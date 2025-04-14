@@ -1,0 +1,27 @@
+body {
+  background: radial-gradient(circle at bottom right, #023516, #000 50%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* this makes it stick in place */
+  min-height: 100vh;
+  overflow-x: hidden;
+  
+}
+
+
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  height: 6px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* Background color of the track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(4, 41, 4);
+  border-radius: 10px; /* Rounded corners */
+}
+
+
