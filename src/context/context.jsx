@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const FoodContext = createContext();
 
@@ -14,11 +15,15 @@ function GlobalState({ children }) {
   const navigate = useNavigate();
 
   function handleFav(recipe) {
-    setFavorites((prev) =>
-      prev.some((fav) => fav.id === recipe.id)
-        ? prev.filter((fav) => fav.id !== recipe.id)
-        : [...prev, recipe]
-    );
+    setFavorites((prev) => {
+      if (prev.some((fav) => fav.id === recipe.id)) {
+        toast.info("Recipe removed from favorites!");
+        return prev.filter((fav) => fav.id !== recipe.id);
+      } else {
+        toast.success("Recipe added to favorites!");
+        return [...prev, recipe];
+      }
+    });
   }
 
   async function fetchData() {
@@ -64,7 +69,10 @@ function GlobalState({ children }) {
   }
   
   function handleDeleteFavorites(recipe) {
-    setFavorites((prev) => prev.filter((fav) => fav.id !== recipe.id));
+    setFavorites((prev) => {
+      toast.info("Recipe removed from favorites!");
+      return prev.filter((fav) => fav.id !== recipe.id);
+    });
   }
 
   return (
